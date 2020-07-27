@@ -1,0 +1,16 @@
+{
+	"name": "image_resizer",
+	"version": "1.0.0",
+	"description": "A little app to resize images",
+	"main": "main.js",
+	"scripts": {
+		"app": "electron .",
+		"dev": "nodemon --exec electron ."
+	},
+	"author": "Tim Lui",
+	"license": "MIT",
+	"devDependencies": {
+		"electron": "^9.1.1",
+		"nodemon": "^2.0.4"
+	}
+}
