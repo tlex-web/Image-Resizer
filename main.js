@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
+const { app, BrowserWindow, Menu, dialog } = require("electron");
 
 process.env.NODE_ENV = "development";
 
@@ -11,10 +11,13 @@ let aboutWindow;
 function createMainWindow() {
 	mainWindow = new BrowserWindow({
 		title: "Image Resizer",
-		width: 1920,
-		height: 1080,
+		width: 600,
+		height: 700,
 		icon: `${__dirname}/assets/icons/Icon_256x256.png`,
 		resizable: isDevelopment,
+		webPreferences: {
+			nodeIntegration: true,
+		},
 	});
 
 	mainWindow.loadURL(`file://${__dirname}/app/index.html`); // mainWindow.loadfile('./app/index.html')
@@ -38,9 +41,6 @@ app.on("ready", () => {
 
 	const mainMenu = Menu.buildFromTemplate(menu);
 	Menu.setApplicationMenu(mainMenu);
-
-	globalShortcut.register("CmdOrCtrl+R", () => mainWindow.reload());
-	globalShortcut.register(isMac ? "Command+Alt+I" : "Ctrl+Shift+I", () => mainWindow.toggleDevTools());
 
 	mainWindow.on("close", () => (mainWindow = null));
 });
