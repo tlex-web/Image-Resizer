@@ -8,6 +8,6 @@ A short description of the image resizer application, made with the electronjs f
 
 The log files are located here:
 
-on Linux: ~/.config/{app name}/logs/{process type}.log
-on macOS: ~/Library/Logs/{app name}/{process type}.log
-on Windows: %USERPROFILE%\AppData\Roaming\{app name}\logs\{process type}.log
+Linux: ~/.config/{app name}/logs/{process type}.log
+macOS: ~/Library/Logs/{app name}/{process type}.log
+Windows: %USERPROFILE%\AppData\Roaming\{app name}\logs\{process type}.log
