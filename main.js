@@ -1,5 +1,3 @@
-const path = require("path");
-const os = require("os");
 const { app, BrowserWindow, Menu, ipcMain, shell } = require("electron");
 const imagemin = require("imagemin");
 const imageminMozjpeg = require("imagemin-mozjpeg");
@@ -7,7 +5,7 @@ const imageminPngquant = require("imagemin-pngquant");
 const slash = require("slash");
 const log = require("electron-log");
 
-process.env.NODE_ENV = "development";
+process.env.NODE_ENV = "production";
 
 const isDevelopment = process.env.NODE_ENV !== "production" ? true : false;
 const isMac = process.platform === "darwin" ? true : false;
@@ -35,7 +33,7 @@ function createAboutWindow() {
 	aboutWindow = new BrowserWindow({
 		title: "About Image Resizer",
 		width: 300,
-		height: 600,
+		height: 500,
 		icon: `${__dirname}/assets/icons/Icon_256x256.png`,
 		backgroundColor: "#fff",
 		resizable: isDevelopment,
