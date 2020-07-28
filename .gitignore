@@ -1,2 +1,3 @@
 node_modules/
-release-builds/
+release-builds/ 
+image_resizer-win32-ia32/
