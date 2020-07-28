@@ -27,20 +27,20 @@
 				</div>
 
 				<p>
-					<strong>Quality</strong>
+					<strong>Quality: </strong>
 					<em>The lower the quality, the smaller the filesizw</em>
 				</p>
 				<p class="range-field">
 					<input type="range" min="0" , max="100" id="slider" />
 				</p>
+				<a class="btn choose-saving-location">Choose the saving location</a>
 
-				<input type="submit" value="Resize" class="btn black" />
+				<div class="card output">
+					<div class="card-content">Output Path: <span class="output-path"></span></div>
+				</div>
+
+				<input type="submit" value="Submit" id="submit" />
 			</form>
-
-			<div class="card output">
-				<button class="btn choose-saving-location">Choose the saving location</button>
-				<div class="card-content">Output Path: <span id="output-path"></span></div>
-			</div>
 		</div>
 
 		<script src="js/materialize.min.js"></script>

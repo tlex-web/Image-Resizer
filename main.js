@@ -1,4 +1,11 @@
-const { app, BrowserWindow, Menu, dialog } = require("electron");
+const path = require("path");
+const os = require("os");
+const { app, BrowserWindow, Menu, ipcMain, shell } = require("electron");
+const imagemin = require("imagemin");
+const imageminMozjpeg = require("imagemin-mozjpeg");
+const imageminPngquant = require("imagemin-pngquant");
+const slash = require("slash");
+const log = require("electron-log");
 
 process.env.NODE_ENV = "development";
 
@@ -17,6 +24,7 @@ function createMainWindow() {
 		resizable: isDevelopment,
 		webPreferences: {
 			nodeIntegration: true,
+			enableRemoteModule: true,
 		},
 	});
 
@@ -79,6 +87,38 @@ const menu = [
 		  ]
 		: []),
 ];
+
+let d;
+
+ipcMain.on("saving:path", (e, result) => {
+	d = slash(result.filePath);
+});
+
+ipcMain.on("image:minimize", (e, options) => {
+	setImageQuality(options, d);
+});
+
+async function setImageQuality({ imgPath, quality }, dest) {
+	try {
+		const pngQuality = quality / 100;
+
+		const file = await imagemin([slash(imgPath)], {
+			destination: dest,
+			plugins: [
+				imageminMozjpeg({ quality }),
+				imageminPngquant({
+					quality: [pngQuality, pngQuality],
+				}),
+			],
+		});
+
+		log.info(file);
+
+		shell.openPath(dest);
+	} catch (err) {
+		log.error(err);
+	}
+}
 
 // Function to minimize the window on mac to the menu bar but doesnt close it
 app.on("window-all-closed", () => {
