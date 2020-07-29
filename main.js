@@ -93,6 +93,7 @@ ipcMain.on("saving:path", (e, result) => {
 });
 
 ipcMain.on("image:minimize", (e, options) => {
+	console.log(d);
 	setImageQuality(options, d);
 });
 
@@ -114,7 +115,7 @@ async function setImageQuality({ imgPath, quality }, dest) {
 
 		shell.openPath(dest);
 	} catch (err) {
-		log.error(err);
+		log.error("Imagemin Error: ", err);
 	}
 }
 
